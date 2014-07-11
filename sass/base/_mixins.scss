@@ -1,0 +1,178 @@
+/**
+ * Mixins and functions
+ *
+ * @author LearningWorks Ltd
+ * @url https://learningworks.co.nz
+ */
+
+
+
+// ========================================================
+// ------------------- General Functions ------------------
+// ========================================================
+
+// Returns the font size
+// Based on type--body and type--heading classes
+@function font-size($size: 'normal', $type: $typeset--body) {
+    @if(map-has-key(map-get($type, sizes), $size)) {
+        @return map-get(map-get($type, sizes), $size);
+    }
+    @else {
+        @warn "#{$size} is not a valid size for your typeset. Small, normal and large are valid for $type--body and h1 through h6 are valid for $type--heading.";
+    }
+}
+
+// Better than writing longhand rgba for transparent black
+@function black($opacity){
+    @return rgba(0, 0, 0, $opacity);
+}
+
+
+// Better than writing longhand rgba for transparent white
+@function white($opacity){
+    @return rgba(255, 255, 255, $opacity);
+}
+
+
+
+
+// =====================================================
+// ---------------- Susy-related Mixins ----------------
+// =====================================================
+
+
+// Returns a unitless number
+// @author Thomas Bredin-Grey <tom@studiothick.com>
+// from Siegmeyer II: https://github.com/tbredin/Siegmeyer2
+@function no-unit($number) {
+    $result: $number;
+    @if unit($number) == "px" {
+        $result: $number / 1px;
+    } @else if unit($number) == "em" {
+        $result: $number / 1em;
+    } @else if unit($number) == "%" {
+        $result: $number / 1%;
+    }
+    @return $result;
+}
+
+
+// Converts a px value to ems. Should only work in absolute em document context (root level), unless $context is specified
+// @author Thomas Bredin-Grey <tom@studiothick.com>
+// from Siegmeyer II: https://github.com/tbredin/Siegmeyer2
+@function px-to-ems($value, $context: $base-font-size) {
+    @if unit($context) == "em" {
+        $context: em-to-px($context);
+    }
+    @if unit($value) == "px" {
+        $value : no-unit($value) / no-unit($context);
+        $value : $value * 1em;
+    }
+    @return $value;
+}
+
+// Converts an em value to px. Should only work in absolute em document context (root level)
+// @author Thomas Bredin-Grey <tom@studiothick.com>
+// from Siegmeyer II: https://github.com/tbredin/Siegmeyer2
+@function em-to-px($value) {
+    @if unit($value) == "em" {
+        $value : no-unit($value) * no-unit($base-font-size);
+        $value : $value * 1px;
+    }
+    @return $value;
+}
+
+// wrapper for combining weird sassline breakpoint mixin and susy 'with layout' mixin for epic responsive layout win
+// @author Thomas Bredin-Grey <tom@studiothick.com>
+// from Siegmeyer II: https://github.com/tbredin/Siegmeyer2
+@mixin breakpoint-layout($match-breakpoint) {
+    @include breakpoint($match-breakpoint) {
+        @include with-layout(break-val($match-breakpoint, layout)) {
+            @content;
+        }
+    }
+}
+
+
+// shorthand function to retreive breakpoint values
+// @author Thomas Bredin-Grey <tom@studiothick.com>
+// from Siegmeyer II: https://github.com/tbredin/Siegmeyer2
+@function break-val($break, $val) {
+    @return map-get(map-get($breakpoint-map, $break), $val);
+}
+
+
+// Breakpoints. Either set one to one of the breakpoint variables, or use a custom value for minor breakpoints.
+// Defaults to min-width, but both min->max and max-width are available too.
+// @author Thomas Bredin-Grey <tom@studiothick.com>
+// from Siegmeyer II: https://github.com/tbredin/Siegmeyer2
+@mixin breakpoint($break: 0, $max: 0) {
+    // Type of break variable
+    $value: type-of($break);
+    $unit: "";
+
+    @if $value != string {
+        $unit: unit($break);
+    }
+
+    // If it is a string (i.e. a breakpoint variable).
+    @if $value == string {
+        // If using 'break-1', 'break-2' etc output the correct breakpoints from map.
+        @if map-has-key($breakpoints, $break) {
+            @media screen and (min-width: #{map-get($breakpoints, $break) / 16 * 1em} ) { @content; }
+        } @else {
+            @warn "#{$break} is not a set breakpoint variable";
+        }
+    } @else if  $value == number {
+        @if $unit == "px" or $unit == "" {
+            $break-val: no-unit($break);
+            $max-val: no-unit($max);
+
+            // If using other numbers output value in ems either for min, min & max or max width breakpoints.
+            $query: "all" !default;
+            @if $break-val != 0 and $max-val != 0 {
+                $query: "(min-width: #{$break-val / 16 * 1em}) and (max-width: #{$max-val / 16 * 1em})";
+            } @else if $break-val != 0 and $max-val == 0 {
+                $query: "(min-width: #{$break-val / 16 * 1em})";
+            } @else if $break-val == 0 and $max-val != 0 {
+                $query: "(max-width: #{$max-val / 16 * 1em})";
+            }
+            @media #{$query} { @content; }
+        } @else {
+            @warn "#{$break} is not valid for use in breakpoint - use a unitless number, pixels, or a breakpoint key";
+        }
+    }
+}
+
+
+// sets containers for all breakpoints, including bridge for sassline & susy incompatability
+// @author Thomas Bredin-Grey <tom@studiothick.com>
+// from Siegmeyer II: https://github.com/tbredin/Siegmeyer2
+@mixin set-container() {
+    @include layout(break-val(mobile, layout));
+    padding-left: $container-padding;
+    padding-right: $container-padding;
+    $break-adjusted: px-to-ems(break-val(mobile, max) - 2 * $container-padding, 16px);
+    @if $debug-grid == true and $debug-allow == true {
+        @include container($break-adjusted show-columns);
+    } @else {
+        @include container($break-adjusted hide);
+    }
+
+    $i: 1;
+    $list: map-keys($breakpoint-map);
+    @each $break in $list {
+        @if ($break != mobile) {
+            @include breakpoint-layout($break) {
+                $break-adjusted: px-to-ems(break-val($break, max) - 2 * $container-padding, 16px);
+
+                @if $debug-grid == true and $debug-allow == true {
+                    @include container($break-adjusted show-columns);
+                } @else {
+                    @include container($break-adjusted hide);
+                }
+            }
+        }
+        $i: $i + 1;
+    }
+}

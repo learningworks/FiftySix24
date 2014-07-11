@@ -1,0 +1,240 @@
+/**
+ * Any typography and bare tag styles
+ *
+ * @author LearningWorks Ltd
+ * @url https://learningworks.co.nz
+ */
+
+/* apply a natural box layout model to all elements */
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+ }
+
+body, html {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: unquote(map-get($typeset--body, font-family));
+    font-style: map-get($typeset--body, style);;
+    font-weight: map-get($typeset--body, weight);
+    text-transform: map-get($typeset--body, case);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: unquote(map-get($typeset--heading, font-family));
+    font-style: map-get($typeset--heading, style);
+    font-weight: map-get($typeset--heading, weight);
+    text-transform: map-get($typeset--heading, case);
+    color: map-get($color, heading);
+}
+
+// Loops through the sizes in heading typeset 
+// and sets the font-size for each tag
+@each $tag, $size in map-get($typeset--heading, sizes) {
+    #{$tag} {
+        font-size: $size;
+        padding-bottom: (no-unit($size) / 2) + 'px';
+    }
+}
+
+dt {
+    font-size: font-size(small, $typeset--body);
+    font-weight: map-get($typeset--body, weight);
+    text-transform: uppercase;
+}
+
+dd, p, li, td, th {
+    font-size: font-size(normal, $typeset--body); 
+}
+
+p {
+    font-size: font-size(normal, $typeset--body);
+    font-weight: map-get($typeset--body, weight);
+    color: map-get($color, text);
+}
+
+a {
+    color: map-get($color, anchor);
+    text-decoration: none;
+}
+
+a:hover {
+    color: map-get($color, anchor--hover);
+    text-decoration: underline;
+}
+
+hr {
+    //draw top & bottom borders
+    border-top-color: white(0.5);
+    border-bottom-color: black(0.5);
+    border-style: solid none;
+    height: 0;
+    width: 100%;
+}
+
+ol {
+    list-style: decimal;
+}
+
+ul {
+    list-style: disc;
+
+    & + & {
+        list-style: square;
+        padding-left: font-size(normal, $typeset--body);
+    }
+
+    & + & + & {
+        list-style: circle;
+        padding-left: font-size(normal, $typeset--body);
+    }
+}
+
+li {
+    margin: 0.5em 0 0 0;
+
+    font-weight: map-get($typeset--body, weight);
+    font-size: font-size(normal, $typeset--body);
+    color: map-get($color, text);
+}
+
+th, caption {
+    font-size: font-size(small, $typeset--body);
+}
+
+label {
+    cursor: pointer;
+}
+
+section, article, aside {
+    display: block;
+}
+
+sup, sub {
+    font-size: font-size(small, $typeset--body);
+}
+
+sup {
+    vertical-align: super;
+}
+
+sub {
+    vertical-align: sub;
+}
+
+img {
+    max-width: 100%;
+}
+
+table {
+    width: 100%; margin: 0; padding: 0; border: 0;
+    border-top: 1px solid map-get($color, border);;
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    th,
+    td {
+        padding: 0.5em 0.25em;
+        border-bottom: 1px solid map-get($color, border);
+        font-size: font-size(normal, $typeset--body);
+    }
+
+    th {
+        font-weight: map-get($typeset--heading, weight);
+    }
+
+    td:first-child {
+        padding-left: 0;
+    }
+
+    tr:nth-child(odd) td {
+        background: map-get($color, table__row);
+    }
+
+    tr:nth-child(even) td {
+        background: map-get($color, table__row--alt);
+    }
+
+    thead td {
+        font-weight: map-get($typeset--heading, weight);
+    }
+}
+
+fieldset {
+    position: relative; display: block;
+    padding: font-size(normal, $typeset--body);
+
+    .disabled {
+        position: relative; overflow: hidden;
+        opacity: 0.4; -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=40)"; filter: alpha(opacity=40);
+    }
+}
+
+label {
+    float: left; 
+    margin: 0 0 0.5em 0;
+    font-family: map-get($typeset--body, font-family);
+    font-size: font-size(normal, $typeset--body);
+    font-weight: map-get($typeset--body, weight);
+    color: map-get($color, form__label);
+}
+
+button {
+    float: left;
+    display: inline; zoom: 1; display: inline-block; /* inline and zoom gives inline-block in old ie */
+}
+
+textarea,
+input,
+select {
+    float: left;
+    padding: 0 0 0.5em 0;
+    font-size: font-size(normal, $typeset--body);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    padding: 0 0.5em 0 0;
+    font-size: font-size(normal, $typeset--body);
+    margin-right: font-size(small, $typeset--body);
+}
+
+label + input[type="radio"],
+label + input[type="checkbox"] {
+    margin-left: font-size(small, $typeset--body);
+}
+
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+    min-width: 85%;
+    padding: 0 0.5em 0 0;
+}
+
+textarea,
+select,
+input[type="text"],
+input[type="email"],
+input[type="search"],
+input[type="password"] {
+    float: left; display: block; width: 100%; min-height: font-size(normal, $typeset--body); padding: 6px 8px;
+    background: map-get($color, background);
+    border: 1px solid map-get($color, border);
+    font-family: map-get($typeset--body, font-family);
+    font-size: font-size(small, $typeset--body);
+    font-weight: map-get($typeset--body, weight);
+    color: map-get($color, form__field);
+    box-sizing: border-box;
+}
+
+textarea {
+    height: font-size(normal, $typeset--body) * 10;
+}
+
+select {
+    width: auto;
+}

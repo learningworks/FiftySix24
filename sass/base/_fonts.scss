@@ -1,0 +1,56 @@
+/**
+ * Fontface declarations and font extends
+ *
+ * @author LearningWorks Ltd
+ * @url https://learningworks.co.nz
+ */
+
+// DEFAULT: LearningWorks brand guidelines font
+// Add your own fonts in a similar manner
+@font-face {
+    font-family: 'MavenPro';
+    src: url('../fonts/maven_pro_bold-webfont.eot');
+    src: url('../fonts/maven_pro_bold-webfont.eot?#iefix') format('eot'),
+         url('../fonts/maven_pro_bold-webfont.woff') format('woff'),
+         url('../fonts/maven_pro_bold-webfont.ttf') format('truetype'),
+         url('../fonts/maven_pro_bold-webfont.svg#webfontNOU7iUTL') format('svg');
+    font-weight: 800;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'MavenPro';
+    src: url('../fonts/maven_pro_medium-webfont.eot');
+    src: url('../fonts/maven_pro_medium-webfont.eot?#iefix') format('eot'),
+         url('../fonts/maven_pro_medium-webfont.woff') format('woff'),
+         url('../fonts/maven_pro_medium-webfont.ttf') format('truetype'),
+         url('../fonts/maven_pro_medium-webfont.svg#webfontNj5iy4Dl') format('svg');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'MavenPro';
+    src: url('../fonts/maven_pro_regular-webfont.eot');
+    src: url('../fonts/maven_pro_regular-webfont.eot?#iefix') format('eot'),
+         url('../fonts/maven_pro_regular-webfont.woff') format('woff'),
+         url('../fonts/maven_pro_regular-webfont.ttf') format('truetype'),
+         url('../fonts/maven_pro_regular-webfont.svg#webfontOM8fITNz') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'MavenPro';
+    src: url('../fonts/mavenprolight-300-webfont.eot');
+    src: url('../fonts/mavenprolight-300-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/mavenprolight-300-webfont.woff') format('woff'),
+         url('../fonts/mavenprolight-300-webfont.ttf') format('truetype'),
+         url('../fonts/mavenprolight-300-webfont.svg#../fonts/maven_pro_light300') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}

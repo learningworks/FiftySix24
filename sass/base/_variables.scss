@@ -1,0 +1,202 @@
+/**
+ * Site Variables
+ *
+ * @author LearningWorks Ltd
+ * @url https://learningworks.co.nz
+ */
+
+
+// =====================================================
+// ----------------- General Variables -----------------
+// =====================================================
+
+
+// SITE COLORS
+$color: (
+
+    //TEXT COLORS
+    heading: #000,
+    subheading: #000,
+    text: #000,
+    anchor: #36f,
+    anchor--mobile: #ccc,
+    anchor--hover: #f63,
+
+    //BACKGROUNDS, BORDERS, FORMS AND TABLES
+    background: #fff,
+    background--mobile: #333,
+    border: #aaa,
+    border--mobile-nav: #666,
+    form: #eee,
+    form__field: #aaa,
+    form__label: #666,
+    table__row: #fff,
+    table__row--alt: #aaa,
+
+    //BUTTONS AND ICONS
+    button: #414141,
+    button--hover: #616161,
+    button--shadow: #000,
+    icon: #000,
+
+    //LEARNINGWORKS BRAND COLORS
+    green: #95c11f,
+    green--light: #dedc00,
+    green--dark: #749719,
+    //following brand colors to be used only for UI elements
+    orange: #faa61a,
+    orange--light: #ffcb05,
+    orange--dark: #f58220
+);
+
+// TYPEFACE MAPS
+// Sets styling and weight of fonts
+// Weights are liable to change depending on the font
+$typeset--body: (
+    font-family: 'MavenPro, arial, helvetica neue, helvetica, sans-serif',
+    weight: 400,
+    weight--light: 300,
+    weight--bold: 800,
+    style: normal,
+    case: none,
+    sizes: (
+        normal: 16px,
+        small: 14px,
+        large: 18px
+    )
+);
+
+$typeset--heading: (
+    font-family: 'MavenPro, arial, helvetica neue, helvetica, sans-serif',
+    weight: bold,
+    style: normal,
+    case: capitalize,
+    sizes: (
+        h1: 48px,
+        h2: 40px,
+        h3: 32px,
+        h4: 24px,
+        h5: 20px,
+        h6: 16px
+    )
+);
+
+// =================================================================
+// ------------------------- Susy Variables ------------------------
+// =================================================================
+// Modified from Siegmeyer2: https://github.com/tbredin/Siegmeyer2/
+// by Thomas Bredin-Grey: https://github.com/tbredin/
+// =================================================================
+
+$debug-color: tomato;
+
+// Susy default settings
+$susy: (
+    global-box-sizing: border-box,
+    math: fluid,
+    debug: (
+        color: transparentize($debug-color,0.6)
+    )
+);
+
+$base-font-size: 16px;
+
+// Responsive grid settings for columns and gutters
+$gutter-width: 24px;
+$column-width: 56px;
+$container-padding: 20px;
+
+// The number of columns at each breakpoint
+$mobile-cols: 6;
+$tablet--small-cols: 8;
+$tablet--large-cols: 10;
+$desktop--small-cols: 12;
+$desktop--large-cols: 14;
+$desktop--x-large-cols: 20;
+
+// The position at which the breakpoint starts
+$mobile-width: 0px;
+$tablet--small-width: 524px;
+$tablet--large-width: 768px;
+$desktop--small-width: 1024px;
+$desktop--large-width: 1282px;
+$desktop--x-large-width: 1602px;
+
+// max width of grid container
+$mobile-max: 524px;
+$tablet--small-max: $tablet--small-width + 150;
+$tablet--large-max: $tablet--large-width;
+$desktop--small-max: $desktop--small-width;
+$desktop--large-max: $desktop--large-width;
+$desktop--x-large-max: $desktop--x-large-width;
+
+// The breakpoint layouts for Susy
+$mobile-layout: $mobile-cols ($column-width $gutter-width);
+$tablet--small-layout: $tablet--small-cols ($column-width $gutter-width);
+$tablet--large-layout: $tablet--large-cols ($column-width $gutter-width);
+$desktop--small-layout: $desktop--small-cols ($column-width $gutter-width);
+$desktop--large-layout: $desktop--large-cols ($column-width $gutter-width);
+$desktop--x-large-layout: $desktop--x-large-cols ($column-width $gutter-width);
+
+// map for flexible retrieval of breakpoint info
+$breakpoint-map: (
+    mobile: (
+        cols:       $mobile-cols,
+        start:      $mobile-width,
+        max:        $mobile-max,
+        layout:     $mobile-layout
+    ),
+    tablet--small: (
+        cols:       $tablet--small-cols,
+        start:      $tablet--small-width,
+        max:        $tablet--small-max,
+        layout:     $tablet--small-layout
+    ),
+    tablet--large: (
+        cols:       $tablet--large-cols,
+        start:      $tablet--large-width,
+        max:        $tablet--large-max,
+        layout:     $tablet--large-layout
+    ),
+    desktop--small: (
+        cols:       $desktop--small-cols,
+        start:      $desktop--small-width,
+        max:        $desktop--small-max,
+        layout:     $desktop--small-layout
+    ),
+    desktop--large: (
+        cols:       $desktop--large-cols,
+        start:      $desktop--large-width,
+        max:        $desktop--large-max,
+        layout:     $desktop--large-layout
+    ),
+    desktop--x-large: (
+        cols:       $desktop--x-large-cols,
+        start:      $desktop--x-large-width,
+        max:        $desktop--x-large-max,
+        layout:     $desktop--x-large-layout
+    ),
+);
+
+// Counts the number of breakpoints
+$breakpoint-number: length(map-keys($breakpoint-map));
+
+// Breakpoint sizes in ems.
+$breakpoints: (
+    mobile: no-unit($mobile-width),                 //     Mobile first
+    tablet--small: no-unit($tablet--small-width),   //   ~ Small tablet up
+    tablet--large: no-unit($tablet--large-width),   //   ~ Large tablet up
+    desktop--small: no-unit($desktop--small-width), //   ~ Desktop up
+    desktop--large: no-unit($desktop--large-width),  //   ~ Large desktop up
+    desktop--x-large: no-unit($desktop--x-large-width)  //   ~ Extra Large desktop up
+);
+
+// debug grid columns, baseline grid & breakpoints
+$debug-grid: true;
+$debug-baseline: true;
+$debug-breakpoints: true;
+
+// grid opacity
+$grid-opacity: 0.2;
+
+

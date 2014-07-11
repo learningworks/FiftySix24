@@ -1,0 +1,23 @@
+/**
+ * Screen imports SASS partials and compiles to CSS
+ *
+ * @author LearningWorks Ltd
+ * @url https://learningworks.co.nz
+ */
+
+// toggle debug
+$debug-allow: true;
+
+// Imports susy
+@import "susy";
+
+// Imports base site styles
+@import "base/reset",
+		"base/mixins",
+		"base/fonts",
+		"base/variables",
+		"base/tags";
+
+// Import all modules
+@import "modules/common",
+		"modules/module-example";
