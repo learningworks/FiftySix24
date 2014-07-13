@@ -82,5 +82,9 @@ function initMobileNav() {
 *	@return void
 */
 function initModuleExample() {
-	//TODO
+	//CHECK IF MODULE EXISTS ON THE PAGE
+	if($('.module-example').length) {
+		//TODO
+		// add code here
+	}
 }

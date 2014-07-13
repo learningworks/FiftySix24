@@ -168,7 +168,7 @@
 
 // Container to impose Susy grid layouts
 .container {
-	//@include container($small, $medium, $large);
+	@include set-container;
 	position: relative;
 }
 
