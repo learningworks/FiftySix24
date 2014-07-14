@@ -1,6 +1,6 @@
 # LearningWorks Template #
 
-HTML site template for LearningWorks. 
+HTML site template and Wordpress blank theme template for LearningWorks. 
 
 
 ## Requirements ##
