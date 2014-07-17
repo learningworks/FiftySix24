@@ -1,6 +1,6 @@
-# LearningWorks Template #
+# FiftySix24 #
 
-HTML site template and Wordpress blank theme template for LearningWorks. 
+An HTML site template and Wordpress blank theme template for LearningWorks Ltd based on a 56px column/24px gutter grid layout using Susy grids. 
 
 
 ## Requirements ##
@@ -118,7 +118,7 @@ Within the *modules* directory, each module should be defined in their own SASS 
 ###### _common.scss ######
 The common module partial contains styling for layout classes (such as *.page*, *.global-header*, *.global-footer*, *.mobile-nav-container* etc.) and common blocks/elements which can be shared across all modules (such as *.module*, *.icon*).
 
-Within this file, the class *.container* is defined. This is used to impose the Susy grid layouts to the page. You must have a div with the *.container* class wrapping your module's content to be able to use Susy grids for that module.
+Within this file, the class *.container* is defined. This is used to impose the Susy grid layouts to the page. You must have a div with the *.container* class wrapping your module's content to be able to use Susy grids for that module. For more on Susy grids, see http://susydocs.oddbird.net/
 
 
 #### Naming Conventions ####
