@@ -1,0 +1,36 @@
+/**
+ * Button components
+ * 
+ *
+ * @author LearningWorks Ltd
+ * @url https://learningworks.co.nz
+ */
+
+// MIXIN TO CREATE BUTTONS, BY DEFAULT USES YOUR COLOUR VARIABLES
+@mixin button-style($button: map-get($color, button), $hover: map-get($color, button--hover), $shadow: map-get($color, button--shadow), $text: map-get($color, button--text)) {
+	position: relative;
+	display: inline; zoom: 1; display: inline-block; /* inline and zoom gives inline-block in old ie */
+	padding: 0.5em 3em 0.5em 1em;
+
+	border: none;
+	background: $button;
+	box-shadow: $shadow 0px 3px;
+	color: $text;
+	text-decoration: none;
+	cursor: pointer;
+
+	&:hover, &:focus {
+		top: 2px;
+		background: $hover;
+	 	color: $text;
+		box-shadow: $shadow 0px 1px;
+	}
+}
+
+.button {
+	@include button-style();
+}
+
+.button--alt {
+	@include button-style(map-get($color, button--alt), map-get($color, button--alt--hover), map-get($color, button--alt--shadow), map-get($color, button--alt--text));
+}

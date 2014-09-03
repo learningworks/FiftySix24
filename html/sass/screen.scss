@@ -18,6 +18,10 @@ $debug-allow: true;
 		"base/variables",
 		"base/tags";
 
+// Import all components
+@import "components/component-icons",
+		"components/component-button";
+
 // Import all modules
 @import "modules/common",
 		"modules/module-example";

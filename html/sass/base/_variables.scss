@@ -15,28 +15,33 @@
 $color: (
 
     //TEXT COLORS
-    heading: #000,
-    subheading: #000,
-    text: #000,
-    anchor: #36f,
-    anchor--mobile: #ccc,
-    anchor--hover: #f63,
+    heading:                #000,
+    subheading:             #000,
+    text:                   #000,
+    anchor:                 #36f,
+    anchor--mobile:         #ccc,
+    anchor--hover:          #f63,
 
     //BACKGROUNDS, BORDERS, FORMS AND TABLES
-    background: #fff,
-    background--mobile: #333,
-    border: #aaa,
-    border--mobile-nav: #666,
-    form: #eee,
-    form__field: #aaa,
-    form__label: #666,
-    table__row: #fff,
-    table__row--alt: #aaa,
+    background:             #fff,
+    background--mobile:     #333,
+    border:                 #aaa,
+    border--mobile-nav:     #666,
+    form:                   #eee,
+    form__field:            #aaa,
+    form__label:            #666,
+    table__row:             #fff,
+    table__row--alt:        #aaa,
 
     //BUTTONS AND ICONS
-    button: #414141,
-    button--hover: #616161,
-    button--shadow: #000,
+    button:                 #414141,
+    button--hover:          #616161,
+    button--shadow:         #000,
+    button--text:           #fff,
+    button--alt:            #ffcb05,
+    button--alt--hover:     #faa61a,
+    button--alt--shadow:    #f58220,
+    button--alt--text:      #fff,
     icon: #000,
 
     //LEARNINGWORKS BRAND COLORS
@@ -80,6 +85,9 @@ $typeset--heading: (
         h6: 16px
     )
 );
+
+
+
 
 // =================================================================
 // ------------------------- Susy Variables ------------------------
