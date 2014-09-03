@@ -83,7 +83,7 @@ function initMobileNav() {
 */
 function initModuleExample() {
 	//CHECK IF MODULE EXISTS ON THE PAGE
-	if($('.module-example').length) {
+	if(!!$('.module-example').length) {
 		//TODO
 		// add code here
 	}
