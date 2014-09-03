@@ -51,8 +51,6 @@ Each module within *.global-content* should be independent of another.
 
 The SASS is set up as follows:
 
-> sass/
->
 >	base/
 >
 > 		_fonts.scss
@@ -64,6 +62,12 @@ The SASS is set up as follows:
 > 		_tags.scss
 >
 >		_variables.scss
+>
+>	components/
+>
+>		_component-icons.scss
+>
+>		_component-button.scss
 >	
 > 	modules/
 >
@@ -74,7 +78,7 @@ The SASS is set up as follows:
 > 	screen.scss
 
 
-Within the *sass* directory, there are 2 subdirectories, *base* and *modules* (described further below), and *screen.scss*.
+Within the *sass* directory, there are 3 subdirectories; *base*, *components*, and *modules* (described further below), and the file; *screen.scss*.
 
 ###### screen.scss ######
 Imports all the SASS partials and Susy. This is what you compile to generate your css.
@@ -91,7 +95,32 @@ Contains all font definitions for the site.
 
 
 ###### _mixins.scss ######
-Contains SASS mixins to handle setting the Susy container, breakpoints, and general mixins (such as font-size).
+Contains SASS mixins and functions to handle setting the Susy container, breakpoints, and general mixins (such as font-size, transitions, animations, etc). To use some of the common general mixins:
+
+Font-size (FUNCTION):
+
+	.element {
+		font-size: font-size(normal, $type--body);
+	}
+
+
+Transition:
+
+	.element {
+		@include transition(color .3s ease);
+	}
+
+
+Keyframe and Animation:
+
+ 	@include keyframes(slide-down) {
+		0% { opacity: 1; }
+ 		90% { opacity: 0; }
+	}
+	
+	.element {
+		@include animation('slide-down 5s 3');		
+	}
 
 
 ###### _reset.scss ######
@@ -113,7 +142,16 @@ Defines Susy grids parameters and contains maps for common site settings. Defaul
 ------
 
 
-Within the *modules* directory, each module should be defined in their own SASS partials file, e.g. *_module-example.scss*.
+Within the *components* directory, each component should be defined in their own SASS partials file, e.g. *_component-button.scss*. A component defines the styling for specific reusable elements such as buttons, icons, etc.
+
+###### _component-button.scss ######
+The component button partial comprises of a mixin which defines the styles which should be shared by all buttons. By default, there are 2 button types: button and button--alt. These use the colours set in your variables file.
+
+
+------
+
+
+Within the *modules* directory, each module should be defined in their own SASS partials file, e.g. *_module-example.scss*. A module defines a layout structure for a block within the page.
 
 ###### _common.scss ######
 The common module partial contains styling for layout classes (such as *.page*, *.global-header*, *.global-footer*, *.mobile-nav-container* etc.) and common blocks/elements which can be shared across all modules (such as *.module*, *.icon*).
@@ -160,6 +198,8 @@ The parameter *--style compressed* will automatically minify the css for you. If
 
 ### Javascript ###
 
-The javascript file, *site.js*, is set up to work based on the SASS modules included within the page. It is dependent upon jQuery.
+The javascript file, *site.js*, is set up to work based on the SASS modules included within the page. It is dependent upon jQuery. Included is jQuery version 1.11, however you are free to use whichever version you want.
+
+Also included is the *development* version of Modernizr. Within the SASS framework there is a mixin dependent upon checking for SVGs using Modernizr, otherwise you can customise your build and remove unwanted features when you push to production. See http://modernizr.com/download/
 
 Each module should have it's own initialising function which contains the functions and event handlers for that module. Each module's function should also contain a check to ensure that the module exists on the page, so that the code is only executed when it is needed.
