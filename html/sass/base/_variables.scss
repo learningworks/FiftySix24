@@ -86,6 +86,16 @@ $typeset--heading: (
     )
 );
 
+//------------------------------------
+// BACKGROUND IMAGE MIXIN VARIABLES
+//------------------------------------
+
+// DEFINES THE PATH FROM THE CSS TO YOUR IMAGES FOLDER
+$image-path: '../images' !default;
+// THE EXTENSION IMAGES SHOULD FALL BACK TO WHEN SVG UNAVAILABLE
+$fallback-extension: 'png' !default;
+// THE FILENAME SUFFIX TO INDICATE RETINA IMAGES
+$retina-suffix: '@2x';
 
 
 
